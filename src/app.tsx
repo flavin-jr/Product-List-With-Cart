@@ -7,6 +7,11 @@ interface FoodDetails {
   price: number;
   image: string;
 }
+interface FoodCartDisplay {
+  name: string;
+  price: number;
+  quantity: number;
+}
 
 export function App() {
   const foodData: FoodDetails[] = [
@@ -77,18 +82,27 @@ export function App() {
 
 
   const [isCartEmpty, setIsCartEmpty] = useState(false);
-  const [cartList, setCartList] = useState<{ name: string, price: number, quantity: number }[]>([]);
+  const [cartList, setCartList] = useState<FoodCartDisplay[]>([]);
 
-  // function addToCart(name: string, price: number, quantity: number) {
+  function addToCart(food: FoodCartDisplay) {
 
-  //   setIsFoodAddedToCart(true)
-  //   setCartList([...cartList, {
-  //     name: name,
-  //     price: price,
-  //     quantity: quantity
-  //   }]);
-  // }
+    const index = cartList.findIndex((item: FoodCartDisplay) => {
+      return item.name === food.name;
+    })
 
+    if (index === -1) {
+      setCartList([...cartList, food])
+      return;
+    }
+    const updatedCartList = [...cartList]
+    updatedCartList.splice(index, 1, food)
+    setCartList(updatedCartList)
+
+
+  }
+  const OrderTotal = cartList.reduce((acc, item) => {
+    return acc + (item.price * item.quantity);
+  }, 0)
 
   return (
     <div className="px-28 py-20 flex w-full gap-8 ">
@@ -99,7 +113,7 @@ export function App() {
           {
             foodData.map(food => (
 
-              <FoodCard type={food.type} name={food.name} price={food.price} image={food.image} />
+              <FoodCard key={food.name} type={food.type} name={food.name} price={food.price} image={food.image} cartList={cartList} addToCart={addToCart} />
             ))
           }
 
@@ -107,7 +121,7 @@ export function App() {
       </div>
       <div className="w-[384px] p-6 bg-white flex flex-col h-fit gap-6">
 
-        <h2 className="text-2xl text-der font-bold">Your Cart</h2>
+        <h2 className="text-2xl text-der font-bold">Your Cart ({cartList.length})</h2>
         {isCartEmpty ? (
           <div className="flex flex-col gap-4 items-center">
             <img src="public/assets/images/illustration-empty-cart.svg" alt="" />
@@ -116,24 +130,27 @@ export function App() {
           </div>
         ) : (
           <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col gap-2">
-                <p className="text-xs font-semibold">Classic Tiramisu</p>
-                <div className="flex gap-2">
-                  <p className="text-der font-semibold text-xs">1x</p>
-                  <p className="text-esor-500 text-xs">@ $5.50</p>
-                  <p className="text-esor-500 font-semibold text-xs">$5.50</p>
-                </div>
-              </div>
-              <button className="border border-esor-400 rounded-full p-0.5">
+            {cartList.map(item => (
 
-                <img src="public/assets/images/icon-remove-item.svg" alt="remove icon" />
-              </button>
-            </div>
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-2">
+                  <p className="text-xs font-semibold">{item.name}</p>
+                  <div className="flex gap-2">
+                    <p className="text-der font-semibold text-xs">{item.quantity}x</p>
+                    <p className="text-esor-500 text-xs">@ ${item.price.toFixed(2)}</p>
+                    <p className="text-esor-500 font-semibold text-xs">${(item.quantity * item.price).toFixed(2)}</p>
+                  </div>
+                </div>
+                <button className="border border-esor-400 rounded-full p-0.5">
+
+                  <img src="public/assets/images/icon-remove-item.svg" alt="remove icon" />
+                </button>
+              </div>
+            ))}
             <div className="h-px bg-esor-100"></div>
             <div className="flex items-center justify-between">
               <p className="text-esor-900 text-xs">Order Total</p>
-              <p className="text-2xl text-esor-900 font-bold">$46.50</p>
+              <p className="text-2xl text-esor-900 font-bold">${OrderTotal.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-center gap-2 bg-esor-50 p-4 rounded-lg">
               <img src="public/assets/images/icon-carbon-neutral.svg" alt="carbon neutral icon" />

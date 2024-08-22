@@ -1,11 +1,16 @@
 import { useState } from "react";
-
+interface FoodCartDisplay {
+    name: string;
+    price: number;
+    quantity: number;
+}
 interface FoodCardProps {
     type: string;
     name: string;
     price: number;
     image: string;
-
+    cartList: FoodCartDisplay[];
+    addToCart: (food: FoodCartDisplay) => void;
 
 }
 export function FoodCard(props: FoodCardProps) {
@@ -14,17 +19,23 @@ export function FoodCard(props: FoodCardProps) {
 
     const [isFoodAddedToCart, setIsFoodAddedToCart] = useState(false);
     const [foodQuantity, setFoodQuantity] = useState(1);
-
+    function handleFoodAddedToCart() {
+        setIsFoodAddedToCart(true)
+    }
     function handleDecrementFood() {
         if (foodQuantity === 1) {
             setIsFoodAddedToCart(false)
             return
         }
         setFoodQuantity(foodQuantity - 1)
+        props.addToCart({ name: props.name, price: props.price, quantity: foodQuantity - 1 })
+
     }
+
     function handleIncrementFood() {
 
         setFoodQuantity(foodQuantity + 1)
+        props.addToCart({ name: props.name, price: props.price, quantity: foodQuantity + 1 })
     }
     return (
         <div className="flex flex-col  gap-4">
@@ -46,7 +57,7 @@ export function FoodCard(props: FoodCardProps) {
                     </div>
 
                 ) : (
-                    <button onClick={() => setIsFoodAddedToCart(true)} className="flex items-center justify-center w-40 rounded-full bg-white border border-esor-400 py-3 -mt-[22px]">
+                    <button onClick={() => { setIsFoodAddedToCart(true); props.addToCart({ name: props.name, price: props.price, quantity: foodQuantity }) }} className="flex items-center justify-center w-40 rounded-full bg-white border border-esor-400 py-3 -mt-[22px]">
                         <img src="public/assets/images/icon-add-to-cart.svg" alt="" />
                         Add to Cart
 
