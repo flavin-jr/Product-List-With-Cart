@@ -84,6 +84,16 @@ export function App() {
   const [isCartEmpty, setIsCartEmpty] = useState(false);
   const [cartList, setCartList] = useState<FoodCartDisplay[]>([]);
 
+
+  function removeItemFromCart(food: FoodCartDisplay) {
+    const index = cartList.findIndex((item: FoodCartDisplay) => {
+      return item.name === food.name;
+    })
+
+    const updatedCartList = [...cartList]
+    updatedCartList.splice(index, 1)
+    setCartList(updatedCartList)
+  }
   function addToCart(food: FoodCartDisplay) {
 
     const index = cartList.findIndex((item: FoodCartDisplay) => {
@@ -113,7 +123,7 @@ export function App() {
           {
             foodData.map(food => (
 
-              <FoodCard key={food.name} type={food.type} name={food.name} price={food.price} image={food.image} cartList={cartList} addToCart={addToCart} />
+              <FoodCard key={food.name} type={food.type} name={food.name} price={food.price} image={food.image} cartList={cartList} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />
             ))
           }
 
@@ -141,7 +151,7 @@ export function App() {
                     <p className="text-esor-500 font-semibold text-xs">${(item.quantity * item.price).toFixed(2)}</p>
                   </div>
                 </div>
-                <button className="border border-esor-400 rounded-full p-0.5">
+                <button onClick={() => { removeItemFromCart({ name: item.name, price: item.price, quantity: item.quantity }) }} className="border border-esor-400 rounded-full p-0.5">
 
                   <img src="public/assets/images/icon-remove-item.svg" alt="remove icon" />
                 </button>

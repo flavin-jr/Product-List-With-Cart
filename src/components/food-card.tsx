@@ -11,6 +11,7 @@ interface FoodCardProps {
     image: string;
     cartList: FoodCartDisplay[];
     addToCart: (food: FoodCartDisplay) => void;
+    removeItemFromCart: (food: FoodCartDisplay) => void
 
 }
 export function FoodCard(props: FoodCardProps) {
@@ -25,6 +26,7 @@ export function FoodCard(props: FoodCardProps) {
     function handleDecrementFood() {
         if (foodQuantity === 1) {
             setIsFoodAddedToCart(false)
+            props.removeItemFromCart({ name: props.name, price: props.price, quantity: foodQuantity })
             return
         }
         setFoodQuantity(foodQuantity - 1)
@@ -37,6 +39,7 @@ export function FoodCard(props: FoodCardProps) {
         setFoodQuantity(foodQuantity + 1)
         props.addToCart({ name: props.name, price: props.price, quantity: foodQuantity + 1 })
     }
+
     return (
         <div className="flex flex-col  gap-4">
             <div className="flex flex-col items-center">
