@@ -13,6 +13,7 @@ export default {
         'first-1': "url('assets/images/image-baklava-desktop.jpg')"
       },
       colors: {
+        'hover-confirmation-btn-color': 'rgb(129,29,11)',
         'der': '#C73B0F',
         'esor': {
           50: '#FCF8F6',
