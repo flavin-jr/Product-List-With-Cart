@@ -52,7 +52,7 @@ export function FoodCard(props: FoodCardProps) {
             setIsFoodAddedToCart(false);
             setFoodQuantity(1);
         }
-    }, props.cartList)
+    }, [props.cartList])
     return (
         <div className="flex flex-col  gap-4">
             <div className="flex flex-col items-center">
