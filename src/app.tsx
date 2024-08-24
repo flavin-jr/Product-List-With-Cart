@@ -126,7 +126,7 @@ export function App() {
 
   return (
     <div className="px-28 py-20 flex w-full gap-8 justify-center">
-      <div className="w-auto flex flex-col gap-8">
+      <div className="min-w-fit flex flex-col gap-8">
         <h1 className="text-[40px] font-bold text-esor-900">Desserts</h1>
         <div className="grid grid-cols-3 grid-flow-row gap-x-6 gap-y-8">
 
@@ -139,7 +139,7 @@ export function App() {
 
         </div>
       </div>
-      <div className="w-[384px] p-6 bg-white flex flex-col h-fit gap-6">
+      <div className="w-[384px] min-w-[200px] p-6 bg-white flex flex-col h-fit gap-6">
 
         <h2 className="text-2xl text-der font-bold">Your Cart ({cartList.length})</h2>
         {cartList.length === 0 ? (
@@ -194,7 +194,7 @@ export function App() {
               <div className="flex flex-col gap-4">
 
                 {cartList.map((item, index) => (
-                  <>
+                  <div key={item.name}>
                     <div className="flex items-center justify-between">
                       <div className="flex gap-4">
 
@@ -214,7 +214,7 @@ export function App() {
                     </div>
                     {cartList.length !== index + 1 && (<div className="bg-esor-100 h-px "></div>)}
 
-                  </>
+                  </div>
                 ))}
                 <div className="bg-esor-100 h-px "></div>
                 <div className="flex items-center justify-between">
