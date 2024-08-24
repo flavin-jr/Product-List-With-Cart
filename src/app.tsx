@@ -1,9 +1,7 @@
+import OrderConfirmedIcon from '../public/assets/images/icon-order-confirmed.svg'
 import { useState } from "react"
 import { FoodCard } from "./components/food-card";
-import RemoveItemIcon from '../public/assets/images/icon-remove-item.svg';
-import CarbonNeutralIcon from '../public/assets/images/icon-carbon-neutral.svg';
-import OrderConfirmedIcon from '../public/assets/images/icon-order-confirmed.svg'
-import EmptyCartIllustration from '../public/assets/images/illustration-empty-cart.svg';
+import { Cart } from "./components/cart";
 interface FoodDetails {
   type: string;
   name: string;
@@ -120,7 +118,7 @@ export function App() {
 
 
   }
-  const OrderTotal = cartList.reduce((acc, item) => {
+  const orderTotal = cartList.reduce((acc, item) => {
     return acc + (item.price * item.quantity);
   }, 0)
 
@@ -139,47 +137,7 @@ export function App() {
 
         </div>
       </div>
-      <div className="w-[384px] min-w-[200px] p-6 bg-white flex flex-col h-fit gap-6">
-
-        <h2 className="text-2xl text-der font-bold">Your Cart ({cartList.length})</h2>
-        {cartList.length === 0 ? (
-          <div className="flex flex-col gap-4 items-center">
-            <img src={EmptyCartIllustration} alt="" />
-            <p>Your added items will appear here</p>
-
-          </div>
-        ) : (
-          <div className="flex flex-col gap-6">
-            {cartList.map(item => (
-
-              <div key={item.name} className="flex items-center justify-between">
-                <div className="flex flex-col gap-2">
-                  <p className="text-xs font-semibold">{item.name}</p>
-                  <div className="flex gap-2">
-                    <p className="text-der font-semibold text-xs">{item.quantity}x</p>
-                    <p className="text-esor-500 text-xs">@ ${item.price.toFixed(2)}</p>
-                    <p className="text-esor-500 font-semibold text-xs">${(item.quantity * item.price).toFixed(2)}</p>
-                  </div>
-                </div>
-                <button onClick={() => { removeItemFromCart({ name: item.name, price: item.price, quantity: item.quantity }) }} className="border border-esor-400 rounded-full p-0.5">
-
-                  <img src={RemoveItemIcon} alt="remove icon" />
-                </button>
-              </div>
-            ))}
-            <div className="h-px bg-esor-100"></div>
-            <div className="flex items-center justify-between">
-              <p className="text-esor-900 text-xs">Order Total</p>
-              <p className="text-2xl text-esor-900 font-bold">${OrderTotal.toFixed(2)}</p>
-            </div>
-            <div className="flex items-center justify-center gap-2 bg-esor-50 p-4 rounded-lg">
-              <img src={CarbonNeutralIcon} alt="carbon neutral icon" />
-              <p className="text-xs text-esor-900 ">This is a <span className="font-semibold">carbon-neutral</span> delivery</p>
-            </div>
-            <button onClick={() => setIsConfirmModalOpen(true)} className="px-6 py-4 bg-der text-white font-semibold rounded-full w-full hover:bg-hover-confirmation-btn-color">Confirm Order</button>
-          </div>
-        )}
-      </div>
+      <Cart cartList={cartList} setIsConfirmModalOpen={setIsConfirmModalOpen} orderTotal={orderTotal} removeItemFromCart={removeItemFromCart} />
       {isConfirmOrderModalOpen && (
         <div className=" fixed inset-0 w-full  bg-black/50 flex items-center justify-center rounded-xl">
           <div className="p-10 bg-white space-y-8 w-[592px] rounded-xl">
@@ -219,7 +177,7 @@ export function App() {
                 <div className="bg-esor-100 h-px "></div>
                 <div className="flex items-center justify-between">
                   <p className="text-esor-900 text-xs">Order Total</p>
-                  <p className="text-2xl text-esor-900 font-bold">${OrderTotal.toFixed(2)}</p>
+                  <p className="text-2xl text-esor-900 font-bold">${orderTotal.toFixed(2)}</p>
                 </div>
               </div>
             </div>
