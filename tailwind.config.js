@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'tablet': { 'max': '850px' },
+        'mobile': { 'max': '450px' }
+      },
       fontFamily: {
         sans: 'Red Hat Text'
       },
