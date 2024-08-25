@@ -18,7 +18,7 @@ interface CartProps {
 
 export function Cart(props: CartProps) {
     return (
-        <div className="w-[384px] min-w-[200px] p-6 bg-white flex flex-col h-fit gap-6">
+        <div className="w-[384px] min-w-[200px] p-6 bg-white flex flex-col h-fit gap-6 tablet:w-full">
 
             <h2 className="text-2xl text-der font-bold">Your Cart ({props.cartList.length})</h2>
             {props.cartList.length === 0 ? (

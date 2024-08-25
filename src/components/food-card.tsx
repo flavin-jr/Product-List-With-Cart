@@ -54,9 +54,9 @@ export function FoodCard(props: FoodCardProps) {
         }
     }, [props.cartList])
     return (
-        <div className="flex flex-col  gap-4">
+        <div className="flex flex-col gap-4 ">
             <div className="flex flex-col items-center">
-                <img className="h-60 rounded-lg" src={props.image} alt="" />
+                <img className="h-60 rounded-lg mobile:w-full" src={props.image} alt="" />
 
                 {isFoodAddedToCart ? (
                     <div className="flex items-center justify-between px-3 w-40 rounded-full bg-der py-3 -mt-[22px] text-white border border-transparent ">

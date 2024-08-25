@@ -18,8 +18,8 @@ export function ConfirmedOrderModal(props: ConfirmedOrderModalProps) {
         props.setCartList([])
     }
     return (
-        <div className=" fixed inset-0 w-full  bg-black/50 flex items-center justify-center ">
-            <div className="p-10 bg-white space-y-8 w-[592px] rounded-xl">
+        <div className=" fixed inset-0 w-full  bg-black/50 flex items-center justify-center tablet:p-10 mobile:p-0 mobile:items-end">
+            <div className="p-10 bg-white space-y-8 w-[592px] rounded-xl tablet:w-full mobile:p-6 mobile:rounded-b-none">
                 <div className="flex flex-col gap-6">
                     <img className="size-12" src={OrderConfirmedIcon} alt="check icon" />
                     <div>

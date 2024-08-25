@@ -123,10 +123,10 @@ export function App() {
   }, 0)
 
   return (
-    <div className="px-28 py-20 flex w-full gap-8 justify-center">
-      <div className="min-w-fit flex flex-col gap-8">
+    <div className="px-28 py-20 flex w-full gap-8 justify-center tablet:flex-col tablet:p-10 mobile:p-6">
+      <div className="min-w-fit flex flex-col gap-8 tablet:w-fit mobile:w-full">
         <h1 className="text-[40px] font-bold text-esor-900">Desserts</h1>
-        <div className="grid grid-cols-3 grid-flow-row gap-x-6 gap-y-8">
+        <div className="grid grid-cols-3 grid-flow-row gap-x-6 gap-y-8 mobile:flex mobile:flex-col mobile:gap-4">
 
           {
             foodData.map(food => (
