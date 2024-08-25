@@ -3,11 +3,8 @@
 import RemoveItemIcon from '../../public/assets/images/icon-remove-item.svg';
 import CarbonNeutralIcon from '../../public/assets/images/icon-carbon-neutral.svg';
 import EmptyCartIllustration from '../../public/assets/images/illustration-empty-cart.svg';
-interface FoodCartDisplay {
-    name: string;
-    price: number;
-    quantity: number;
-}
+import { FoodCartDisplay } from '../app';
+
 interface CartProps {
     orderTotal: number;
     cartList: FoodCartDisplay[];

@@ -1,9 +1,5 @@
 import OrderConfirmedIcon from '../public/assets/images/icon-order-confirmed.svg'
-interface FoodCartDisplay {
-    name: string;
-    price: number;
-    quantity: number;
-}
+import { FoodCartDisplay } from './app';
 interface ConfirmedOrderModalProps {
     orderTotal: number;
     cartList: FoodCartDisplay[];

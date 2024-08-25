@@ -8,7 +8,7 @@ interface FoodDetails {
   price: number;
   image: string;
 }
-interface FoodCartDisplay {
+export interface FoodCartDisplay {
   name: string;
   price: number;
   quantity: number;

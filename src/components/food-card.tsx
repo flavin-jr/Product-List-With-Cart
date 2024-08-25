@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import AddToCartIcon from '../../public/assets/images/icon-add-to-cart.svg';
 import IncrementQuantityIcon from '../../public/assets/images/icon-increment-quantity.svg';
 import DecrementQuantityIcon from '../../public/assets/images/icon-decrement-quantity.svg';
+import { FoodCartDisplay } from "../app";
 
-interface FoodCartDisplay {
-    name: string;
-    price: number;
-    quantity: number;
-}
 interface FoodCardProps {
     type: string;
     name: string;
