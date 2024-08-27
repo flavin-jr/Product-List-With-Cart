@@ -2,6 +2,15 @@ import { useState } from "react"
 import { FoodCard } from "./components/food-card";
 import { Cart } from "./components/cart";
 import { ConfirmedOrderModal } from "./confirmed-order-modal";
+import waffle from '../public/assets/images/image-waffle-desktop.jpg';
+import cremeBrulee from '../public/assets/images/image-creme-brulee-desktop.jpg';
+import macaron from '../public/assets/images/image-macaron-desktop.jpg';
+import tiramisu from '../public/assets/images/image-tiramisu-desktop.jpg';
+import baklava from '../public/assets/images/image-baklava-desktop.jpg';
+import meringue from '../public/assets/images/image-meringue-desktop.jpg';
+import cake from '../public/assets/images/image-cake-desktop.jpg';
+import brownie from '../public/assets/images/image-brownie-desktop.jpg';
+import pannaCotta from '../public/assets/images/image-panna-cotta-desktop.jpg';
 interface FoodDetails {
   type: string;
   name: string;
@@ -22,62 +31,62 @@ export function App() {
       type: 'Waffle',
       name: 'Waffle with Berries',
       price: 6.5,
-      image: 'public/assets/images/image-waffle-desktop.jpg'
+      image: waffle,
     },
     {
       type: 'Crème Brûlée',
       name: 'Vanilla Bean Crème Brûlée',
       price: 7,
-      image: 'public/assets/images/image-creme-brulee-desktop.jpg'
+      image: cremeBrulee,
 
     },
     {
       type: 'Macaron',
       name: 'Macaron Mix of Five',
       price: 8,
-      image: 'public/assets/images/image-macaron-desktop.jpg'
+      image: macaron
 
     },
     {
       type: 'Tiramisu',
       name: 'Classic Tiramisu',
       price: 5.5,
-      image: 'public/assets/images/image-tiramisu-desktop.jpg'
+      image: tiramisu
 
     },
     {
       type: 'Baklava',
       name: 'Pistachio Baklava',
       price: 4,
-      image: 'public/assets/images/image-baklava-desktop.jpg'
+      image: baklava
 
     },
     {
       type: 'Pie',
       name: 'Lemon Meringue Pie',
       price: 5,
-      image: 'public/assets/images/image-meringue-desktop.jpg'
+      image: meringue
 
     },
     {
       type: 'Cake',
       name: 'Red Velvet Cake',
       price: 4.5,
-      image: 'public/assets/images/image-cake-desktop.jpg'
+      image: cake
 
     },
     {
       type: 'Brownie',
       name: 'Salted Caramel Brownie',
       price: 5.5,
-      image: 'public/assets/images/image-brownie-desktop.jpg'
+      image: brownie
 
     },
     {
       type: 'Panna Cotta',
       name: 'Vanilla Panna Cotta',
       price: 6.6,
-      image: 'public/assets/images/image-panna-cotta-desktop.jpg'
+      image: pannaCotta
 
     }
   ]
